@@ -17,7 +17,6 @@ func main(){
 	for _, s := range data {
 		fmt.Println(s.S)
 	}
-	// fmt.Println(data)
 }
 
 func catch(e error){
@@ -32,9 +31,9 @@ func isSameSentence(prev pdf.Text, cur pdf.Text) bool{
 }
 
 func cleanString(s string) string{
-	// re := regexp.MustCompile("[[:^ascii:]]")
-	// s = re.ReplaceAllLiteralString(s, "")
-	re := regexp.MustCompile("/s+")
+	re := regexp.MustCompile(`[^[:print:]À-ÿ]`)
+	s = re.ReplaceAllLiteralString(s, "")
+	re = regexp.MustCompile(`/s+`)
 	s = re.ReplaceAllLiteralString(s, " ")
 	s = strings.ReplaceAll(s, "\n", "")
 	if(s != "" && s[0] == ' ') {return s[1:]}
