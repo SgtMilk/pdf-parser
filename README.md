@@ -7,8 +7,8 @@ The server only has one route: `POST /parse-pdf`. It takes a pdf file and return
 ### A little docker tutorial
 You can run the docker container by first building it, then running it
 ```sh
-docker build -t "pdf-parser:Dockerfile" .
-docker run -p 8080:8080 pdf-parser:Dockerfile
+docker build -t "sgtmilk/pdf-parser:<TAG>" .
+docker run -p 8080:8080 sgtmilk/pdf-parser:<TAG>
 ```
 
 ## I only want to parse a pdf pwease 😩
