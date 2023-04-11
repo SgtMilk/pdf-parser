@@ -11,6 +11,7 @@ RUN go mod download
 COPY . .
 
 # Set environment variables
+EXPOSE 8080
 
 # Runtime operations (CMD)
 CMD go run *.go
