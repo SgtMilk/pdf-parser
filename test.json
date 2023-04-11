@@ -1,18 +1,31 @@
 {
  "Value": "",
  "Font": "",
+ "Position": null,
  "Children": [
   {
    "Value": "ALIX ROUTHIER-LALONDE ",
    "Font": "Calibri-Light-27",
+   "Position": [
+    160.94,
+    737.88
+   ],
    "Children": [
     {
      "Value": "alix.routhier-lalonde@hotmail.com  +1 (514) 916-5351  Montreal, Canada ",
      "Font": "Georgia-Bold-12",
+     "Position": [
+      36,
+      671.38
+     ],
      "Children": [
       {
        "Value": "https://github.com/SgtMilk  https://linkedin.com/in/alix-routhier-lalonde/ ",
        "Font": "Calibri-Bold-11",
+       "Position": [
+        132.02,
+        706.42
+       ],
        "Children": null
       }
      ]
@@ -20,28 +33,52 @@
     {
      "Value": "EXPERIENCE",
      "Font": "Georgia-Bold-12",
+     "Position": [
+      36,
+      478.51
+     ],
      "Children": [
       {
        "Value": "FALL 2022 ",
        "Font": "Calibri-Bold-12",
+       "Position": [
+        69.624,
+        635.14
+       ],
        "Children": []
       },
       {
        "Value": "DATA ANALYST, ",
        "Font": "Calibri-Bold-12",
+       "Position": [
+        69.624,
+        568.66
+       ],
        "Children": [
         {
          "Value": "AUTODESK",
          "Font": "Calibri-12",
+         "Position": [
+          151.7,
+          635.14
+         ],
          "Children": [
           {
            "Value": "Unblocked analytics in Maya by data mining waypoints in the source code, which now allows Autodesk analysts to know what data is available. Also created data pipelines for internal requests at Autodesk.",
            "Font": "Calibri-11",
+           "Position": [
+            69.624,
+            619.42
+           ],
            "Children": null
           },
           {
            "Value": "SUMMERS 2021 AND 2022 ",
            "Font": "Calibri-Bold-9",
+           "Position": [
+            69.624,
+            582.7
+           ],
            "Children": null
           }
          ]
@@ -51,10 +88,18 @@
       {
        "Value": "FULL-STACK INTERN, ",
        "Font": "Calibri-Bold-12",
+       "Position": [
+        228.05,
+        568.66
+       ],
        "Children": [
         {
          "Value": "AUTODESK",
          "Font": "Calibri-12",
+         "Position": [
+          174.74,
+          568.66
+         ],
          "Children": []
         }
        ]
@@ -62,20 +107,36 @@
       {
        "Value": "2022:",
        "Font": "Calibri-Bold-12",
+       "Position": [
+        228.05,
+        568.66
+       ],
        "Children": [
         {
          "Value": "Designed and built a whats new page on the Shotgrid web-app using technologies such as TypeScript React and Ruby on Rails. Worked on maintaining Shotgrid codebase on bugs and fixes tickets. ",
          "Font": "Calibri-11",
+         "Position": [
+          95.064,
+          552.94
+         ],
          "Children": null
         },
         {
          "Value": "2021:",
          "Font": "Calibri-Bold-11",
+         "Position": [
+          69.624,
+          526.03
+         ],
          "Children": null
         },
         {
          "Value": "Participated in an unannounced new project using technologies such as typescript react, Golang, and C++. I also set up with New Relic on this project, allowing data analytics teams to be able to visualize API usage.",
          "Font": "Calibri-11",
+         "Position": [
+          95.064,
+          526.03
+         ],
          "Children": null
         }
        ]
@@ -85,24 +146,44 @@
     {
      "Value": "PROJECTS ",
      "Font": "Georgia-Bold-12",
+     "Position": [
+      36,
+      230.93
+     ],
      "Children": [
       {
        "Value": "NOVEMBER 2022 ",
        "Font": "Calibri-Bold-12",
+       "Position": [
+        69.624,
+        442.39
+       ],
        "Children": []
       },
       {
        "Value": "PONG GAME ",
        "Font": "Calibri-Bold-12",
+       "Position": [
+        69.624,
+        374.45
+       ],
        "Children": [
         {
          "Value": "In a team of four, we designed and built a Gameboy-like console that plays the game Pong on a STM32 board with a joystick, screen, and speaker. We used interfaces such as SPI, I2C, DAC, and delved in timer interrupts. ",
          "Font": "Calibri-11",
+         "Position": [
+          69.624,
+          426.67
+         ],
          "Children": null
         },
         {
          "Value": "MARCH 2022 ",
          "Font": "Calibri-Bold-9",
+         "Position": [
+          69.624,
+          388.51
+         ],
          "Children": null
         }
        ]
@@ -110,15 +191,27 @@
       {
        "Value": "MIPS PROCESSOR ",
        "Font": "Calibri-Bold-12",
+       "Position": [
+        69.624,
+        307.97
+       ],
        "Children": [
         {
          "Value": "In a team of five, we implemented a MIPS processor in VHDL, using a classic 5 stage pipeline with the Fetch, Decode, Execute, Memory and Writeback stages. Personally implemented Decode and Execute. ",
          "Font": "Calibri-11",
+         "Position": [
+          69.624,
+          358.73
+         ],
          "Children": null
         },
         {
          "Value": "JUNE 2020  DECEMBER 2021 ",
          "Font": "Calibri-Bold-9",
+         "Position": [
+          69.624,
+          322.01
+         ],
          "Children": null
         }
        ]
@@ -126,10 +219,18 @@
       {
        "Value": "RELAY ",
        "Font": "Calibri-Bold-12",
+       "Position": [
+        69.624,
+        307.97
+       ],
        "Children": [
         {
          "Value": "Was involved in the development of a start-up dedicated to building VTOL drones to transport emergency supplies to people in need. I built a website for the start-up with a teammate using Vue.js and promoted the project at Génial, a French-Canadian television show.  ",
          "Font": "Calibri-11",
+         "Position": [
+          69.624,
+          292.25
+         ],
          "Children": null
         }
        ]
@@ -139,19 +240,35 @@
     {
      "Value": "EDUCATION",
      "Font": "Georgia-Bold-12",
+     "Position": [
+      36,
+      158.42
+     ],
      "Children": [
       {
        "Value": "SEPTEMBER 2019  APRIL 2023 ",
        "Font": "Calibri-Bold-12",
+       "Position": [
+        69.624,
+        194.78
+       ],
        "Children": []
       },
       {
        "Value": "BACHELOR OF COMPUTER ENGINEERING, ",
        "Font": "Calibri-Bold-12",
+       "Position": [
+        69.624,
+        194.78
+       ],
        "Children": [
         {
          "Value": "MCGILL UNIVERSITY",
          "Font": "Calibri-12",
+         "Position": [
+          278.45,
+          194.78
+         ],
          "Children": []
         }
        ]
@@ -161,55 +278,99 @@
     {
      "Value": "SKILLS",
      "Font": "Georgia-Bold-12",
+     "Position": [
+      36,
+      158.42
+     ],
      "Children": [
       {
        "Value": "VHDL ",
        "Font": "Calibri-11",
+       "Position": [
+        54,
+        133.82
+       ],
        "Children": null
       },
       {
        "Value": "OOP (Java, C++) ",
        "Font": "Calibri-11",
+       "Position": [
+        342.07,
+        133.82
+       ],
        "Children": null
       },
       {
        "Value": "C Programming Language ",
        "Font": "Calibri-11",
+       "Position": [
+        54,
+        118.82
+       ],
        "Children": null
       },
       {
        "Value": "Python (PyTorch, Tensorflow, Flask) ",
        "Font": "Calibri-11",
+       "Position": [
+        342.07,
+        118.82
+       ],
        "Children": null
       },
       {
        "Value": "Docker ",
        "Font": "Calibri-11",
+       "Position": [
+        54,
+        103.82
+       ],
        "Children": null
       },
       {
        "Value": "Machine Learning (CV, GAN, Transformers) ",
        "Font": "Calibri-11",
+       "Position": [
+        342.07,
+        103.82
+       ],
        "Children": null
       },
       {
        "Value": "JavaScript / TypeScript (React, Redux Toolkit, Next.js) ",
        "Font": "Calibri-11",
+       "Position": [
+        54,
+        88.824
+       ],
        "Children": null
       },
       {
        "Value": "Golang, Ruby on Rails ",
        "Font": "Calibri-11",
+       "Position": [
+        342.07,
+        88.824
+       ],
        "Children": null
       },
       {
        "Value": "MySQL/MariaDB/PostgreSQL ",
        "Font": "Calibri-11",
+       "Position": [
+        54,
+        73.824
+       ],
        "Children": null
       },
       {
        "Value": "Native in French and English ",
        "Font": "Calibri-11",
+       "Position": [
+        342.07,
+        73.824
+       ],
        "Children": null
       }
      ]

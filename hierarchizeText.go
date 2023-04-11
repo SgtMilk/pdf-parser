@@ -9,6 +9,7 @@ import (
 type TextNode struct{
 	Value string
 	Font string
+	Position []float64
 	Children []TextNode
 }
 
@@ -102,6 +103,7 @@ func recursiveClassify(texts []TextType, titleFonts []Font) []TextNode{
 					nodes = append(nodes, TextNode{
 						Value: texts[lastTitle].text.S,
 						Font: vTitle.name + "-" + strconv.Itoa(int(vTitle.size)),
+						Position: []float64{v.text.X, v.text.Y},
 						Children: recursiveClassify(texts[lastTitle + 1:i], tempTitleFonts),
 				})}
 				cond = true
@@ -112,6 +114,7 @@ func recursiveClassify(texts []TextType, titleFonts []Font) []TextNode{
 			nodes = append(nodes, TextNode{
 				Value: texts[lastTitle].text.S,
 				Font: vTitle.name + "-" + strconv.Itoa(int(vTitle.size)),
+				Position: []float64{texts[lastTitle].text.X, texts[lastTitle].text.Y},
 				Children: recursiveClassify(texts[lastTitle + 1:], tempTitleFonts),
 			})
 			return nodes
@@ -128,6 +131,7 @@ func transformToNodes(texts []TextType) []TextNode{
 		nodes[i] = TextNode{
 			Value: v.text.S,
 			Font: v.text.Font + "-" + strconv.Itoa(int(v.text.FontSize)),
+			Position: []float64{v.text.X, v.text.Y},
 			Children: nil,
 		}
 	}
