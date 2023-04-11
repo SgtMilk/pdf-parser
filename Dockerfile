@@ -13,3 +13,4 @@ COPY . .
 # Set environment variables
 
 # Runtime operations (CMD)
+CMD go run *.go

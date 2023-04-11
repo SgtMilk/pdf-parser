@@ -11,17 +11,16 @@ import (
 
 func getPDF(path string) ([]pdf.Text, error) {
 	f, r, err := pdf.Open(path)
-	// remember close file
+
 	if err != nil {
 		return nil, err
 	}
 
 	defer f.Close()
 
-	totalPage := r.NumPage()
-
 	sections := []pdf.Text{}
 
+	totalPage := r.NumPage()
 	for pageIndex := 1; pageIndex <= totalPage; pageIndex++ {
 		p := r.Page(pageIndex)
 		if p.V.IsNull() {
