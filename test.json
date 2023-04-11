@@ -1,0 +1,220 @@
+{
+ "Value": "",
+ "Font": "",
+ "Children": [
+  {
+   "Value": "ALIX ROUTHIER-LALONDE ",
+   "Font": "Calibri-Light-27",
+   "Children": [
+    {
+     "Value": "alix.routhier-lalonde@hotmail.com  +1 (514) 916-5351  Montreal, Canada ",
+     "Font": "Georgia-Bold-12",
+     "Children": [
+      {
+       "Value": "https://github.com/SgtMilk  https://linkedin.com/in/alix-routhier-lalonde/ ",
+       "Font": "Calibri-Bold-11",
+       "Children": null
+      }
+     ]
+    },
+    {
+     "Value": "EXPERIENCE",
+     "Font": "Georgia-Bold-12",
+     "Children": [
+      {
+       "Value": "FALL 2022 ",
+       "Font": "Calibri-Bold-12",
+       "Children": []
+      },
+      {
+       "Value": "DATA ANALYST, ",
+       "Font": "Calibri-Bold-12",
+       "Children": [
+        {
+         "Value": "AUTODESK",
+         "Font": "Calibri-12",
+         "Children": [
+          {
+           "Value": "Unblocked analytics in Maya by data mining waypoints in the source code, which now allows Autodesk analysts to know what data is available. Also created data pipelines for internal requests at Autodesk.",
+           "Font": "Calibri-11",
+           "Children": null
+          },
+          {
+           "Value": "SUMMERS 2021 AND 2022 ",
+           "Font": "Calibri-Bold-9",
+           "Children": null
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "Value": "FULL-STACK INTERN, ",
+       "Font": "Calibri-Bold-12",
+       "Children": [
+        {
+         "Value": "AUTODESK",
+         "Font": "Calibri-12",
+         "Children": []
+        }
+       ]
+      },
+      {
+       "Value": "2022:",
+       "Font": "Calibri-Bold-12",
+       "Children": [
+        {
+         "Value": "Designed and built a whats new page on the Shotgrid web-app using technologies such as TypeScript React and Ruby on Rails. Worked on maintaining Shotgrid codebase on bugs and fixes tickets. ",
+         "Font": "Calibri-11",
+         "Children": null
+        },
+        {
+         "Value": "2021:",
+         "Font": "Calibri-Bold-11",
+         "Children": null
+        },
+        {
+         "Value": "Participated in an unannounced new project using technologies such as typescript react, Golang, and C++. I also set up with New Relic on this project, allowing data analytics teams to be able to visualize API usage.",
+         "Font": "Calibri-11",
+         "Children": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "Value": "PROJECTS ",
+     "Font": "Georgia-Bold-12",
+     "Children": [
+      {
+       "Value": "NOVEMBER 2022 ",
+       "Font": "Calibri-Bold-12",
+       "Children": []
+      },
+      {
+       "Value": "PONG GAME ",
+       "Font": "Calibri-Bold-12",
+       "Children": [
+        {
+         "Value": "In a team of four, we designed and built a Gameboy-like console that plays the game Pong on a STM32 board with a joystick, screen, and speaker. We used interfaces such as SPI, I2C, DAC, and delved in timer interrupts. ",
+         "Font": "Calibri-11",
+         "Children": null
+        },
+        {
+         "Value": "MARCH 2022 ",
+         "Font": "Calibri-Bold-9",
+         "Children": null
+        }
+       ]
+      },
+      {
+       "Value": "MIPS PROCESSOR ",
+       "Font": "Calibri-Bold-12",
+       "Children": [
+        {
+         "Value": "In a team of five, we implemented a MIPS processor in VHDL, using a classic 5 stage pipeline with the Fetch, Decode, Execute, Memory and Writeback stages. Personally implemented Decode and Execute. ",
+         "Font": "Calibri-11",
+         "Children": null
+        },
+        {
+         "Value": "JUNE 2020  DECEMBER 2021 ",
+         "Font": "Calibri-Bold-9",
+         "Children": null
+        }
+       ]
+      },
+      {
+       "Value": "RELAY ",
+       "Font": "Calibri-Bold-12",
+       "Children": [
+        {
+         "Value": "Was involved in the development of a start-up dedicated to building VTOL drones to transport emergency supplies to people in need. I built a website for the start-up with a teammate using Vue.js and promoted the project at Génial, a French-Canadian television show.  ",
+         "Font": "Calibri-11",
+         "Children": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "Value": "EDUCATION",
+     "Font": "Georgia-Bold-12",
+     "Children": [
+      {
+       "Value": "SEPTEMBER 2019  APRIL 2023 ",
+       "Font": "Calibri-Bold-12",
+       "Children": []
+      },
+      {
+       "Value": "BACHELOR OF COMPUTER ENGINEERING, ",
+       "Font": "Calibri-Bold-12",
+       "Children": [
+        {
+         "Value": "MCGILL UNIVERSITY",
+         "Font": "Calibri-12",
+         "Children": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "Value": "SKILLS",
+     "Font": "Georgia-Bold-12",
+     "Children": [
+      {
+       "Value": "VHDL ",
+       "Font": "Calibri-11",
+       "Children": null
+      },
+      {
+       "Value": "OOP (Java, C++) ",
+       "Font": "Calibri-11",
+       "Children": null
+      },
+      {
+       "Value": "C Programming Language ",
+       "Font": "Calibri-11",
+       "Children": null
+      },
+      {
+       "Value": "Python (PyTorch, Tensorflow, Flask) ",
+       "Font": "Calibri-11",
+       "Children": null
+      },
+      {
+       "Value": "Docker ",
+       "Font": "Calibri-11",
+       "Children": null
+      },
+      {
+       "Value": "Machine Learning (CV, GAN, Transformers) ",
+       "Font": "Calibri-11",
+       "Children": null
+      },
+      {
+       "Value": "JavaScript / TypeScript (React, Redux Toolkit, Next.js) ",
+       "Font": "Calibri-11",
+       "Children": null
+      },
+      {
+       "Value": "Golang, Ruby on Rails ",
+       "Font": "Calibri-11",
+       "Children": null
+      },
+      {
+       "Value": "MySQL/MariaDB/PostgreSQL ",
+       "Font": "Calibri-11",
+       "Children": null
+      },
+      {
+       "Value": "Native in French and English ",
+       "Font": "Calibri-11",
+       "Children": null
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
