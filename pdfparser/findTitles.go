@@ -53,16 +53,16 @@ func findFonts(texts []pdf.Text) map[Font]int {
 		}
 		if val, ok := mLength[font]; ok {
 			mLength[font] = val + len(text.S)
-			mWidth[font] = text.W
+			mWidth[font] += text.W * float64(len(text.S))
 		}else{
 			mLength[font] = len(text.S)
-			if text.W > mWidth[font]{mWidth[font] = text.W}
+			mWidth[font] = text.W * float64(len(text.S))
 		}
 	}
 
 	m := make(map[Font]int)
 	for k, v := range mLength{
-		k.width = mWidth[k]
+		k.width = mWidth[k] / float64(v)
 		m[k] = v
 	}
 	

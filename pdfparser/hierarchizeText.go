@@ -19,6 +19,10 @@ func hierarchizeText(texts []pdf.Text, titleFonts []Font) TextNode{
 
 	titleFonts = sortFonts(titleFonts)
 
+	for _, v := range titleFonts{
+		println(v.name, int(v.size), v.width)
+	}
+
 	topNode := TextNode{
 		Children: recursiveClassify(texts, titleFonts),
 	}
@@ -60,7 +64,7 @@ func sortFonts(titleFonts []Font) []Font{
 		// if math.Round(titleFonts[i].size) == math.Round(titleFonts[j].size){
 		// 	return titleFonts[i].width > titleFonts[j].width
 		// }
-		return titleFonts[i].size > titleFonts[j].size
+		return titleFonts[i].size * titleFonts[i].width > titleFonts[j].size * titleFonts[j].width
 	})
 
 	// creating an order map

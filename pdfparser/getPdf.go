@@ -24,13 +24,22 @@ func getPDF(path string) []pdf.Text {
 
 		var lastTextStyle pdf.Text
 		texts := p.Content().Text
+
+		sum := 0.
+		len := 0.
 		for _, text := range texts {
 			if isSameSentence(lastTextStyle, text) {
+				sum += text.W
+				len++
+
 				lastTextStyle.S = lastTextStyle.S + text.S
-				if lastTextStyle.W < text.W {lastTextStyle.W = text.W}
 			} else {
+				lastTextStyle.W = sum / len
+
 				sections = addString(lastTextStyle, sections)
 				lastTextStyle = text
+				sum = text.W
+				len = 1
 			}
 		}
 		sections = addString(lastTextStyle, sections)
