@@ -1,4 +1,4 @@
-package main
+package utils
 
 import "fmt"
 
@@ -9,7 +9,7 @@ func PrintCyan(text string){
 	fmt.Println(string(colorCyan) + text + string(colorReset))
 }
 
-func catch(e error) {
+func Catch(e error) {
 	if e != nil {
 		panic(e)
 	}

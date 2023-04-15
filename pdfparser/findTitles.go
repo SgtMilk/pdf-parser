@@ -1,20 +1,19 @@
-package main
+package pdfparser
 
 import (
 	"github.com/ledongthuc/pdf"
 )
 
-type TextType struct{
-	text pdf.Text
-	isTitle bool
-}
-
 type Font struct {
 	name string
 	size float64
+	width float64
 }
 
-func findTitles(texts []pdf.Text) ([]TextType, []Font) {
+/*
+Finds and returns a list of fonts in the PDF document that are title fonts.
+*/
+func findTitles(texts []pdf.Text) ([]Font) {
 	fonts := findFonts(texts)
 
 	characterCount := 0
@@ -31,43 +30,41 @@ func findTitles(texts []pdf.Text) ([]TextType, []Font) {
 		isTitle[font] = count < countCutoff && font.size >= avgFontSize
 	}
 
-	stringCutoff := 50
-	categorizedTexts := make([]TextType, len(texts))
-	for i, text := range texts{
-		font := Font{
-			name: text.Font,
-			size: text.FontSize,
-		}
-		textType := TextType{
-			text: text,
-			isTitle: isTitle[font] && len(text.S) < stringCutoff,
-		}
-		categorizedTexts[i] = textType
-
-
-	}
-
     var titleFonts []Font
     for k, v := range isTitle {
         if(v){titleFonts = append(titleFonts, k)}
     }
 
-	return categorizedTexts, titleFonts
+	return titleFonts
 }
 
+/*
+From an array of texts, finds all the fonts included and stores them in a map.
+Also stores in the map the number of characters for every font.
+*/
 func findFonts(texts []pdf.Text) map[Font]int {
-	m := make(map[Font]int)
+	mLength := make(map[Font]int)
+	mWidth := make(map[Font]float64)
 
 	for _, text := range texts{
 		font := Font{
 			name: text.Font,
 			size: text.FontSize,
 		}
-		if val, ok := m[font]; ok {
-			m[font] = val + len(text.S)
+		if val, ok := mLength[font]; ok {
+			mLength[font] = val + len(text.S)
+			mWidth[font] = text.W
 		}else{
-			m[font] = len(text.S)
+			mLength[font] = len(text.S)
+			if text.W > mWidth[font]{mWidth[font] = text.W}
 		}
 	}
+
+	m := make(map[Font]int)
+	for k, v := range mLength{
+		k.width = mWidth[k]
+		m[k] = v
+	}
+	
 	return m
 }

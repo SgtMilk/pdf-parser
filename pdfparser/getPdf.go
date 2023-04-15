@@ -1,7 +1,8 @@
-package main
+package pdfparser
 
 import (
 	"math"
+	"pdf-parser/utils"
 	"regexp"
 	"sort"
 	"strings"
@@ -9,13 +10,9 @@ import (
 	"github.com/ledongthuc/pdf"
 )
 
-func getPDF(path string) ([]pdf.Text, error) {
+func getPDF(path string) []pdf.Text {
 	f, r, err := pdf.Open(path)
-
-	if err != nil {
-		return nil, err
-	}
-
+	utils.Catch(err)
 	defer f.Close()
 
 	sections := []pdf.Text{}
@@ -23,9 +20,8 @@ func getPDF(path string) ([]pdf.Text, error) {
 	totalPage := r.NumPage()
 	for pageIndex := 1; pageIndex <= totalPage; pageIndex++ {
 		p := r.Page(pageIndex)
-		if p.V.IsNull() {
-			continue
-		}
+		if p.V.IsNull() {continue}
+
 		var lastTextStyle pdf.Text
 		texts := p.Content().Text
 		for _, text := range texts {
@@ -47,7 +43,7 @@ func getPDF(path string) ([]pdf.Text, error) {
 		return sections[i].Y > sections[j].Y
 	})
 	
-	return sections, nil
+	return sections
 }
 
 func isSameSentence(prev pdf.Text, cur pdf.Text) bool{
