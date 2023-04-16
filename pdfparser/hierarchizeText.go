@@ -2,6 +2,7 @@ package pdfparser
 
 import (
 	"math"
+	"regexp"
 	"sort"
 	"strconv"
 	"strings"
@@ -86,7 +87,12 @@ func sortFonts(titleFonts []Font) []Font{
 func getStyle(font Font)string{
 	fontAttr := strings.Split(font.name, "-")
 	if len(fontAttr) < 2 {return "Base"}
-	return fontAttr[1]
+
+	re := regexp.MustCompile(`\W*((?i)bold|bolditalic|boldoblique|italic|oblique(?-i))\W*`)
+	match := re.FindStringSubmatch(fontAttr[1])
+
+	if match != nil {return match[1]}
+	return "Base"
 }
 
 func findIndex(titlefonts []Font, k string) int{
@@ -114,7 +120,7 @@ func recursiveClassify(texts []pdf.Text, titleFonts []Font) []TextNode{
 		for i, v := range texts{
 			if vTitle.name == v.Font && vTitle.size == v.FontSize{
 				if i != 0 {
-					if nodes == nil && !(vTitle.name == texts[i].Font && vTitle.size == texts[i].FontSize){
+					if nodes == nil && !(vTitle.name == texts[lastTitle].Font && vTitle.size == texts[lastTitle].FontSize){
 						nodes = append(nodes, TextNode{
 							Children: recursiveClassify(texts[lastTitle:i], tempTitleFonts),
 						})

@@ -38,7 +38,7 @@ func getPDF(path string) []pdf.Text {
 			} else {
 				lastTextStyle.W = sum / len
 
-				sections = addString(lastTextStyle, sections)
+				sections = addString(lastTextStyle, sections, totalPage - pageIndex)
 				lastTextStyle = text
 				if text.W != 0{
 					sum = text.W
@@ -46,7 +46,7 @@ func getPDF(path string) []pdf.Text {
 				}
 			}
 		}
-		sections = addString(lastTextStyle, sections)
+		sections = addString(lastTextStyle, sections, pageIndex)
 	}
 
 	sort.SliceStable(sections, func(i, j int) bool {
@@ -64,6 +64,7 @@ func getPDF(path string) []pdf.Text {
 			i++
 		}
 	}
+
 	return sections
 }
 
@@ -77,13 +78,15 @@ func isSameParagraph(cur pdf.Text, prev pdf.Text) bool{
 func isSameSentence(prev pdf.Text, cur pdf.Text) bool{
 	if(prev.S == "") {return false}
 	styleCheck := math.Abs(prev.FontSize - cur.FontSize) < 1 && prev.Font == cur.Font
-	heightCheck := math.Abs(prev.Y - cur.Y) < prev.FontSize * 5
+	heightCheck := math.Abs(prev.Y - cur.Y) < prev.FontSize * 8
 	return styleCheck && heightCheck
 }
 
-func addString(cur pdf.Text, sections []pdf.Text) []pdf.Text {
+func addString(cur pdf.Text, sections []pdf.Text, page int) []pdf.Text {
+	pageHeight := 800
 	cur.S = cleanString(cur.S)
 	if(cur.S == ""){return sections}
+	cur.Y += float64(page * pageHeight)
 	sections = append(sections, cur)
 	return sections
 }
