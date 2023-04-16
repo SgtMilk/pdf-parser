@@ -3,7 +3,6 @@ package server
 import (
 	"log"
 	"net/http"
-	"os"
 	"pdf-parser/pdfparser"
 	"pdf-parser/utils"
 
@@ -37,13 +36,7 @@ func parsePDF(c *gin.Context) {
 		return
 	}
 
-	filename := "./source/temp.pdf"
-	err = c.SaveUploadedFile(file, filename)
-	utils.Catch(err)
-
-	defer os.Remove(filename)
-
-	output := pdfparser.ParsePDF(filename)
+	output := pdfparser.ParsePdf(file)
 
 	c.Data(http.StatusOK, "application/json", output)
 }
