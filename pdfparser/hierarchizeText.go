@@ -1,6 +1,7 @@
 package pdfparser
 
 import (
+	"math"
 	"sort"
 	"strconv"
 	"strings"
@@ -18,10 +19,6 @@ type TextNode struct{
 func hierarchizeText(texts []pdf.Text, titleFonts []Font) TextNode{
 
 	titleFonts = sortFonts(titleFonts)
-
-	for _, v := range titleFonts{
-		println(v.name, int(v.size), v.width)
-	}
 
 	topNode := TextNode{
 		Children: recursiveClassify(texts, titleFonts),
@@ -61,10 +58,10 @@ func sortFonts(titleFonts []Font) []Font{
 	indeces = nil
 
 	sort.SliceStable(titleFonts, func(i, j int) bool {
-		// if math.Round(titleFonts[i].size) == math.Round(titleFonts[j].size){
-		// 	return titleFonts[i].width > titleFonts[j].width
-		// }
-		return titleFonts[i].size * titleFonts[i].width > titleFonts[j].size * titleFonts[j].width
+		if math.Round(titleFonts[i].size) == math.Round(titleFonts[j].size){
+			return titleFonts[i].width > titleFonts[j].width
+		}
+		return titleFonts[i].size > titleFonts[j].size
 	})
 
 	// creating an order map
@@ -107,9 +104,8 @@ func recursiveClassify(texts []pdf.Text, titleFonts []Font) []TextNode{
 	var nodes []TextNode = nil
 
 	for iTitle, vTitle := range titleFonts{
-		isLastTitle := iTitle == len(titleFonts) - 1
 		var tempTitleFonts []Font
-		if isLastTitle{
+		if iTitle == len(titleFonts) - 1{	// if its the last title font
 			tempTitleFonts = nil
 		}else{tempTitleFonts = titleFonts[iTitle + 1:]}
 
@@ -118,12 +114,19 @@ func recursiveClassify(texts []pdf.Text, titleFonts []Font) []TextNode{
 		for i, v := range texts{
 			if vTitle.name == v.Font && vTitle.size == v.FontSize{
 				if i != 0 {
-					nodes = append(nodes, TextNode{
-						Value: texts[lastTitle].S,
-						Font: vTitle.name + "-" + strconv.Itoa(int(vTitle.size)),
-						Position: []float64{v.X, v.Y},
-						Children: recursiveClassify(texts[lastTitle + 1:i], tempTitleFonts),
-				})}
+					if nodes == nil && !(vTitle.name == texts[i].Font && vTitle.size == texts[i].FontSize){
+						nodes = append(nodes, TextNode{
+							Children: recursiveClassify(texts[lastTitle:i], tempTitleFonts),
+						})
+					}else{
+						nodes = append(nodes, TextNode{
+							Value: texts[lastTitle].S,
+							Font: vTitle.name + "-" + strconv.Itoa(int(vTitle.size)),
+							Position: []float64{v.X, v.Y},
+							Children: recursiveClassify(texts[lastTitle + 1 : i], tempTitleFonts),
+						})
+					}
+				}
 				cond = true
 				lastTitle = i
 			}

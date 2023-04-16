@@ -65,6 +65,6 @@ func findFonts(texts []pdf.Text) map[Font]int {
 		k.width = mWidth[k] / float64(v)
 		m[k] = v
 	}
-	
+
 	return m
 }

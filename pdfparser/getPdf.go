@@ -29,8 +29,10 @@ func getPDF(path string) []pdf.Text {
 		len := 0.
 		for _, text := range texts {
 			if isSameSentence(lastTextStyle, text) {
-				sum += text.W
-				len++
+				if text.W != 0{
+					sum += text.W
+					len++
+				}
 
 				lastTextStyle.S = lastTextStyle.S + text.S
 			} else {
@@ -38,8 +40,10 @@ func getPDF(path string) []pdf.Text {
 
 				sections = addString(lastTextStyle, sections)
 				lastTextStyle = text
-				sum = text.W
-				len = 1
+				if text.W != 0{
+					sum = text.W
+					len = 1
+				}
 			}
 		}
 		sections = addString(lastTextStyle, sections)
@@ -51,14 +55,29 @@ func getPDF(path string) []pdf.Text {
 		}
 		return sections[i].Y > sections[j].Y
 	})
-	
+
+	for i := 1 ; i < len(sections) ; i++{
+		if isSameParagraph(sections[i], sections[i - 1]){
+			temp := sections[i]
+			sections[i] = sections[i - 1]
+			sections[i - 1] = temp
+			i++
+		}
+	}
 	return sections
+}
+
+func isSameParagraph(cur pdf.Text, prev pdf.Text) bool{
+	sizeCond := cur.FontSize - prev.FontSize > 1
+	positionalCond := math.Abs(prev.Y - cur.Y) < prev.FontSize * 3
+	lengthCond := len(prev.S) < 40
+	return positionalCond && lengthCond && sizeCond
 }
 
 func isSameSentence(prev pdf.Text, cur pdf.Text) bool{
 	if(prev.S == "") {return false}
 	styleCheck := math.Abs(prev.FontSize - cur.FontSize) < 1 && prev.Font == cur.Font
-	heightCheck := math.Abs(prev.Y - cur.Y) < prev.FontSize * 2.5
+	heightCheck := math.Abs(prev.Y - cur.Y) < prev.FontSize * 5
 	return styleCheck && heightCheck
 }
 

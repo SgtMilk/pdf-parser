@@ -12,6 +12,6 @@ func ParsePDF(filename string) []byte{
 	parent := hierarchizeText(data, titleFonts)
 	file, err := json.Marshal(parent.Children)
 	utils.Catch(err)
-	
+
 	return file
 }
