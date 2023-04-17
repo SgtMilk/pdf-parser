@@ -1,6 +1,8 @@
 package main
 
-import "pdf-parser/server"
+import (
+	"pdf-parser/server"
+)
 
 func main() {
 	server.CreateRouter()

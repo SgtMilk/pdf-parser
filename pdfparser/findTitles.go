@@ -1,35 +1,42 @@
 package pdfparser
 
+const countCutoffDivisor int = 4
+
 type Font struct {
-	name string
-	size float64
+	name  string
+	size  float64
 	width float64
 }
 
 /*
 Finds and returns a list of fonts in the PDF document that are title fonts.
 */
-func findTitles(texts []Section) ([]Font) {
+func findTitles(texts []Section) []Font {
 	fonts := findFonts(texts)
 
 	characterCount := 0
 	fontSum := 0.
-	for f, v := range fonts{
+
+	for f, v := range fonts {
 		characterCount += v
 		fontSum += float64(v) * f.size
 	}
+
 	avgFontSize := int(fontSum / float64(characterCount))
-	countCutoff := characterCount / 4
+	countCutoff := characterCount / countCutoffDivisor
 
 	isTitle := make(map[Font]bool)
-	for font, count := range fonts{
+	for font, count := range fonts {
 		isTitle[font] = count < countCutoff && font.size >= float64(avgFontSize)
 	}
 
-    var titleFonts []Font
-    for k, v := range isTitle {
-        if(v){titleFonts = append(titleFonts, k)}
-    }
+	var titleFonts []Font
+
+	for k, v := range isTitle {
+		if v {
+			titleFonts = append(titleFonts, k)
+		}
+	}
 
 	return titleFonts
 }
@@ -42,7 +49,7 @@ func findFonts(texts []Section) map[Font]int {
 	mLength := make(map[Font]int)
 	mWidth := make(map[Font]float64)
 
-	for _, text := range texts{
+	for _, text := range texts {
 		font := Font{
 			name: text.text.Font,
 			size: text.text.FontSize,
@@ -50,14 +57,15 @@ func findFonts(texts []Section) map[Font]int {
 		if val, ok := mLength[font]; ok {
 			mLength[font] = val + len(text.text.S)
 			mWidth[font] += text.text.W * float64(len(text.text.S))
-		}else{
+		} else {
 			mLength[font] = len(text.text.S)
 			mWidth[font] = text.text.W * float64(len(text.text.S))
 		}
 	}
 
 	m := make(map[Font]int)
-	for k, v := range mLength{
+
+	for k, v := range mLength {
 		k.width = mWidth[k] / float64(v)
 		m[k] = v
 	}
