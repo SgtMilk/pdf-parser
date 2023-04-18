@@ -1,13 +1,10 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/go
 {
-  "name": "Python 3",
+  "name": "pdf-parser",
   "build": {
     "dockerfile": "../Dockerfile",
-    "context": "..",
-    "args": {
-      "VARIANT": "3.9"
-    }
+    "context": ".."
   }
 
   // Features to add to the dev container. More info: https://containers.dev/features.
