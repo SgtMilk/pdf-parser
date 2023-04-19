@@ -5,7 +5,7 @@ pipeline {
         stage('Linting') {
             steps {
                 echo 'Linting..'
-                sh 'golangci-lint run'
+                sh 'golangci-lint run --timeout=5m'
             }
         }
         stage('Build') {
