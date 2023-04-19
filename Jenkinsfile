@@ -6,6 +6,7 @@ pipeline {
             steps {
                 echo 'Linting..'
                 sh 'pwd'
+                sh 'echo "$NAME"'
                 sh 'golangci-lint run'
             }
         }
