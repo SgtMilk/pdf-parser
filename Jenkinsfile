@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'go build'
+                sh 'go build -buildvcs=false'
             }
         }
         stage('Test') {
