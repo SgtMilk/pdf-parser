@@ -1,6 +1,8 @@
 # pdfparser
 A small server to parse a pdf and return it's content. The parser will return hierarchized data in JSON format with the positioning and style in the original pdf.
 
+<img src="[https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg](http://sgtmilk.ddns.net:9090/buildStatus/icon?job=pdfparser)" alt="Awesome Badge"/>
+
 [![Build Status](http://sgtmilk.ddns.net:9090/buildStatus/icon?job=pdfparser)](http://sgtmilk.ddns.net:9090/job/pdfparser/)
 
 ## Run the server
