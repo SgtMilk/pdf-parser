@@ -1,5 +1,5 @@
 pipeline {
-    agent { dockerfile { args '-u root:root' }} }
+    agent { dockerfile { args '-u root:root' } }
 
     stages {
         stage('Linting') {
