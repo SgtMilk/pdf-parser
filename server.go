@@ -20,7 +20,7 @@ func CreateRouter() {
 			"message": "pong",
 		})
 	})
-	router.POST("/parse-pdf", parsePDF)
+	router.POST("/parsepdf", parsePDF)
 
 	catch(router.Run(":8080"))
 }
