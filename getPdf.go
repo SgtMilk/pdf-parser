@@ -15,30 +15,30 @@ const fontMultiplicatorForSameLine float64 = 3
 const fontMultiplicatorForNextLine float64 = 8
 const maxLengthForSubtitle = 40
 
-type PageHeight struct {
+type pageHeight struct {
 	min float64
 	max float64
 }
 
-type Rect struct {
+type rect struct {
 	Top    float64
 	Bottom float64
 	Left   float64
 	Right  float64
 }
 
-type Section struct {
+type section struct {
 	text     pdf.Text
-	position Rect
+	position rect
 }
 
-func getPDF(r *pdf.Reader) []Section {
-	sections := []Section{}
+func getPDF(r *pdf.Reader) []section {
+	sections := []section{}
 
 	// fetching all the content once and getting the actual height of each page
 	totalPage := r.NumPage()
 	pageContents := make([][]pdf.Text, totalPage)
-	pageHeights := make([]PageHeight, totalPage)
+	pageHeights := make([]pageHeight, totalPage)
 
 	for pageIndex := 0; pageIndex < totalPage; pageIndex++ {
 		p := r.Page(pageIndex + 1)
@@ -62,7 +62,7 @@ func getPDF(r *pdf.Reader) []Section {
 			}
 		}
 
-		pageHeights[pageIndex] = PageHeight{min, max}
+		pageHeights[pageIndex] = pageHeight{min, max}
 	}
 
 	// parsing the content and separating in sections
@@ -102,7 +102,7 @@ func getPDF(r *pdf.Reader) []Section {
 			} else {
 				lastTextStyle.W = sum / length
 
-				sections = addString(lastTextStyle, sections, Rect{
+				sections = addString(lastTextStyle, sections, rect{
 					Top:    calculateY(top, page, pageHeights),
 					Bottom: calculateY(bottom, page, pageHeights),
 					Right:  right,
@@ -118,7 +118,7 @@ func getPDF(r *pdf.Reader) []Section {
 			}
 		}
 
-		sections = addString(lastTextStyle, sections, Rect{
+		sections = addString(lastTextStyle, sections, rect{
 			Top:    calculateY(top, page, pageHeights),
 			Bottom: calculateY(bottom, page, pageHeights),
 			Right:  right,
@@ -143,7 +143,7 @@ func isSameSentence(prev, cur pdf.Text) bool {
 	return styleCheck && heightCheck
 }
 
-func addString(cur pdf.Text, sections []Section, rect Rect) []Section {
+func addString(cur pdf.Text, sections []section, rect rect) []section {
 	cur.S = cleanString(cur.S)
 	if cur.S == "" {
 		return sections
@@ -153,7 +153,7 @@ func addString(cur pdf.Text, sections []Section, rect Rect) []Section {
 		cur.Font += "-CAPS"
 	}
 
-	sections = append(sections, Section{
+	sections = append(sections, section{
 		text:     cur,
 		position: rect,
 	})
@@ -189,7 +189,7 @@ func isUpper(s string) bool {
 	return true
 }
 
-func calculateY(y float64, curPage int, pageHeights []PageHeight) float64 {
+func calculateY(y float64, curPage int, pageHeights []pageHeight) float64 {
 	offset := 25
 	newY := y - pageHeights[curPage].min + float64((offset * ((len(pageHeights)) - curPage)))
 
@@ -200,7 +200,7 @@ func calculateY(y float64, curPage int, pageHeights []PageHeight) float64 {
 	return newY
 }
 
-func sortSections(sections []Section) {
+func sortSections(sections []section) {
 	sort.SliceStable(sections, func(i, j int) bool {
 		if math.Abs(sections[i].position.Top-sections[j].position.Top) < sections[i].text.FontSize/2 {
 			return sections[i].position.Left < sections[j].position.Left
@@ -212,7 +212,7 @@ func sortSections(sections []Section) {
 	fixSubtitleBeforeTitle(sections)
 }
 
-func fixColumns(sections []Section) {
+func fixColumns(sections []section) {
 	for i := 1; i < len(sections)-1; i++ {
 		if !(math.Abs(sections[i].text.Y-sections[i+1].text.Y) < sections[i+1].text.FontSize/2) {
 			continue
@@ -246,7 +246,7 @@ func fixColumns(sections []Section) {
 	}
 }
 
-func fixSubtitleBeforeTitle(sections []Section) {
+func fixSubtitleBeforeTitle(sections []section) {
 	for i := 1; i < len(sections); i++ {
 		if subtitleIsSameParagraph(sections[i].text, sections[i-1].text) {
 			sections[i], sections[i-1] = sections[i-1], sections[i]

@@ -7,7 +7,7 @@ import (
 )
 
 func TestSortFonts(t *testing.T) {
-	fonts := []Font{
+	fonts := []font{
 		{
 			name:  "a",
 			size:  12,
@@ -45,7 +45,7 @@ func TestSortFonts(t *testing.T) {
 		},
 	}
 
-	baseline := []Font{
+	baseline := []font{
 		{
 			name:  "b",
 			size:  13,

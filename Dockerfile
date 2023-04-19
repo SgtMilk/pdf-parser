@@ -1,5 +1,9 @@
 FROM mcr.microsoft.com/devcontainers/go:0-1-bullseye
 
+# Environment variables
+ARG ENV=ci
+ENV ENV ${ENV}
+
 # Setup working dorectory
 WORKDIR /app
 
@@ -15,4 +19,4 @@ COPY . .
 EXPOSE 8080
 
 # Runtime operations (CMD)
-CMD go run *.go
+CMD if [ "$ENV" = "production" ] ; then go run cmd/*.go ; fi
