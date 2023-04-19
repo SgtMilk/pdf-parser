@@ -3,6 +3,7 @@ FROM mcr.microsoft.com/devcontainers/go:0-1-bullseye
 # Environment variables
 ARG ENV=ci
 ENV ENV ${ENV}
+ENV XDG_CACHE_HOME /tmp/.cache
 
 # Setup working dorectory
 WORKDIR /app
