@@ -5,6 +5,7 @@ pipeline {
         stage('Linting') {
             steps {
                 echo 'Linting..'
+                sh 'pwd'
                 sh 'golangci-lint run'
             }
         }
@@ -18,11 +19,6 @@ pipeline {
             steps {
                 echo 'Testing..'
                 sh 'go test ./...'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
             }
         }
     }
