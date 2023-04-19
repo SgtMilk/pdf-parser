@@ -1,9 +1,7 @@
 # pdfparser
 A small server to parse a pdf and return it's content. The parser will return hierarchized data in JSON format with the positioning and style in the original pdf.
 
-<a href="http://sgtmilk.ddns.net:9090/job/pdfparser/"><img src="http://sgtmilk.ddns.net:9090/buildStatus/icon?job=pdfparser" alt="Build Status"/></a>
-
-[![Build Status](http://sgtmilk.ddns.net:9090/buildStatus/icon?job=pdfparser)](http://sgtmilk.ddns.net:9090/job/pdfparser/)
+[![Build Status](https://sgtmilk.ddns.net:9091/buildStatus/icon?job=pdfparser)](https://sgtmilk.ddns.net:9091/job/pdfparser/)
 
 ## Run the server
 The server only has one main route: `POST /parsepdf`. It takes a pdf file and returns the JSON-formatted data. To run the server, you can either run the Docker container or if you have go installed, you can run `go run *.go` in your command line.
