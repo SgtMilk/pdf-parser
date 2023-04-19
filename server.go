@@ -1,10 +1,8 @@
-package server
+package pdfparser
 
 import (
 	"log"
 	"net/http"
-	"pdfparser/pdfparser"
-	"pdfparser/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -24,12 +22,12 @@ func CreateRouter() {
 	})
 	router.POST("/parse-pdf", parsePDF)
 
-	utils.Catch(router.Run(":8080"))
+	catch(router.Run(":8080"))
 }
 
 func parsePDF(c *gin.Context) {
 	file, err := c.FormFile("file")
-	utils.Catch(err)
+	catch(err)
 
 	if file.Filename[len(file.Filename)-4:] != ".pdf" {
 		log.Println("Something else than a pdf file was sent:", file.Filename)
@@ -41,7 +39,7 @@ func parsePDF(c *gin.Context) {
 		return
 	}
 
-	output := pdfparser.ParsePdf(file)
+	output := ParsePdf(file)
 
 	c.Data(http.StatusOK, "application/json", output)
 }

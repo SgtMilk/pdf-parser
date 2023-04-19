@@ -8,24 +8,24 @@ import (
 	"strings"
 )
 
-type TextNode struct {
+type textNode struct {
 	Value    string
 	Font     string
-	Children []TextNode
-	Position Rect
+	Children []textNode
+	Position rect
 }
 
-func hierarchizeText(texts []Section, titleFonts []Font) TextNode {
+func hierarchizeText(texts []section, titleFonts []font) textNode {
 	titleFonts = sortFonts(titleFonts)
 
-	topNode := TextNode{
+	topNode := textNode{
 		Children: recursiveClassify(texts, titleFonts),
 	}
 
 	return topNode
 }
 
-func sortFonts(titleFonts []Font) []Font {
+func sortFonts(titleFonts []font) []font {
 	var indices []int
 
 	baseFonts := make([]string, len(titleFonts))
@@ -34,7 +34,7 @@ func sortFonts(titleFonts []Font) []Font {
 	}
 
 	// purging of type same base fonts
-	m := make(map[string][]Font)
+	m := make(map[string][]font)
 
 	for i, v := range titleFonts {
 		baseFont := strings.Split(v.name, "-")[0] + "-" + strconv.Itoa(int(v.size))
@@ -43,7 +43,7 @@ func sortFonts(titleFonts []Font) []Font {
 			indices = append(indices, i)
 			m[baseFont] = append(m[baseFont], v)
 		} else {
-			m[baseFont] = []Font{v}
+			m[baseFont] = []font{v}
 		}
 	}
 
@@ -89,7 +89,7 @@ func sortFonts(titleFonts []Font) []Font {
 	return titleFonts
 }
 
-func getStyle(font Font) string {
+func getStyle(font font) string {
 	fontAttr := strings.Split(font.name, "-")
 	if len(fontAttr) <= 1 {
 		return "Base"
@@ -116,7 +116,7 @@ func getStyle(font Font) string {
 	return style
 }
 
-func findIndex(titlefonts []Font, k string) int {
+func findIndex(titlefonts []font, k string) int {
 	for i, v := range titlefonts {
 		if strings.Split(v.name, "-")[0]+"-"+strconv.Itoa(int(v.size)) == k {
 			return i
@@ -126,15 +126,15 @@ func findIndex(titlefonts []Font, k string) int {
 	return len(titlefonts)
 }
 
-func recursiveClassify(texts []Section, titleFonts []Font) []TextNode {
+func recursiveClassify(texts []section, titleFonts []font) []textNode {
 	if titleFonts == nil {
 		return transformToNodes(texts)
 	}
 
-	var nodes []TextNode
+	var nodes []textNode
 
 	for iTitle, vTitle := range titleFonts {
-		var tempTitleFonts []Font
+		var tempTitleFonts []font
 		if iTitle == len(titleFonts)-1 { // if its the last title font
 			tempTitleFonts = nil
 		} else {
@@ -148,11 +148,11 @@ func recursiveClassify(texts []Section, titleFonts []Font) []TextNode {
 			if vTitle.name == v.text.Font && vTitle.size == v.text.FontSize {
 				if i != 0 {
 					if nodes == nil && !(vTitle.name == texts[lastTitle].text.Font && vTitle.size == texts[lastTitle].text.FontSize) {
-						nodes = append(nodes, TextNode{
+						nodes = append(nodes, textNode{
 							Children: recursiveClassify(texts[lastTitle:i], tempTitleFonts),
 						})
 					} else {
-						nodes = append(nodes, TextNode{
+						nodes = append(nodes, textNode{
 							Value:    texts[lastTitle].text.S,
 							Font:     vTitle.name + "-" + strconv.Itoa(int(vTitle.size)),
 							Position: v.position,
@@ -167,7 +167,7 @@ func recursiveClassify(texts []Section, titleFonts []Font) []TextNode {
 		}
 
 		if cond {
-			nodes = append(nodes, TextNode{
+			nodes = append(nodes, textNode{
 				Value:    texts[lastTitle].text.S,
 				Font:     vTitle.name + "-" + strconv.Itoa(int(vTitle.size)),
 				Position: texts[lastTitle].position,
@@ -181,11 +181,11 @@ func recursiveClassify(texts []Section, titleFonts []Font) []TextNode {
 	return transformToNodes(texts)
 }
 
-func transformToNodes(texts []Section) []TextNode {
-	var nodes = make([]TextNode, len(texts))
+func transformToNodes(texts []section) []textNode {
+	var nodes = make([]textNode, len(texts))
 
 	for i, v := range texts {
-		nodes[i] = TextNode{
+		nodes[i] = textNode{
 			Value:    v.text.S,
 			Font:     v.text.Font + "-" + strconv.Itoa(int(v.text.FontSize)),
 			Position: v.position,
