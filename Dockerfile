@@ -1,9 +1,9 @@
-FROM mcr.microsoft.com/devcontainers/go:0-1-bullseye
+FROM golang
 
 # Environment variables
 ARG ENV=ci
 ENV ENV ${ENV}
-ENV XDG_CACHE_HOME /tmp/.cache
+# ENV XDG_CACHE_HOME /tmp/.cache
 
 # Setup working dorectory
 WORKDIR /app
