@@ -3,8 +3,8 @@ package server
 import (
 	"log"
 	"net/http"
-	"pdf-parser/pdfparser"
-	"pdf-parser/utils"
+	"pdfparser/pdfparser"
+	"pdfparser/utils"
 
 	"github.com/gin-gonic/gin"
 )

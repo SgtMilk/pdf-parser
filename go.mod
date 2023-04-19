@@ -1,4 +1,4 @@
-module pdf-parser
+module pdfparser
 
 go 1.20
 

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"io"
 	"mime/multipart"
-	"pdf-parser/utils"
+	"pdfparser/utils"
 
 	"github.com/ledongthuc/pdf"
 )

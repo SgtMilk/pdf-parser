@@ -1,7 +1,7 @@
 package main
 
 import (
-	"pdf-parser/server"
+	"pdfparser/server"
 )
 
 func main() {
