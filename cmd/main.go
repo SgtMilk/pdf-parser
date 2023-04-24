@@ -1,6 +1,6 @@
 package main
 
-import "pdfparser"
+import "github.com/SgtMilk/pdfparser"
 
 func main() {
 	pdfparser.CreateRouter()
