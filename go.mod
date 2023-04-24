@@ -1,4 +1,4 @@
-module pdfparser
+module github.com/SgtMilk/pdfparser
 
 go 1.20
 
