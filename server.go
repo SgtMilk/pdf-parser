@@ -7,13 +7,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-const MaxMultipartMemory int64 = 8 << 20 // 8 MiB
+const maxMultipartMemory int64 = 8 << 20 // 8 MiB
 
+// Creates a router for PDF processing on port 8080. See README for details
 func CreateRouter() {
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 	// Set a lower memory limit for multipart forms (default is 32 MiB)
-	router.MaxMultipartMemory = MaxMultipartMemory
+	router.MaxMultipartMemory = maxMultipartMemory
 	router.GET("/ping", func(c *gin.Context) {
 		log.Println(c.ClientIP())
 		c.JSON(http.StatusOK, gin.H{

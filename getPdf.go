@@ -20,16 +20,9 @@ type pageHeight struct {
 	max float64
 }
 
-type rect struct {
-	Top    float64
-	Bottom float64
-	Left   float64
-	Right  float64
-}
-
 type section struct {
 	text     pdf.Text
-	position rect
+	position Rect
 }
 
 func getPDF(r *pdf.Reader) []section {
@@ -102,7 +95,7 @@ func getPDF(r *pdf.Reader) []section {
 			} else {
 				lastTextStyle.W = sum / length
 
-				sections = addString(lastTextStyle, sections, rect{
+				sections = addString(lastTextStyle, sections, Rect{
 					Top:    calculateY(top, page, pageHeights),
 					Bottom: calculateY(bottom, page, pageHeights),
 					Right:  right,
@@ -118,7 +111,7 @@ func getPDF(r *pdf.Reader) []section {
 			}
 		}
 
-		sections = addString(lastTextStyle, sections, rect{
+		sections = addString(lastTextStyle, sections, Rect{
 			Top:    calculateY(top, page, pageHeights),
 			Bottom: calculateY(bottom, page, pageHeights),
 			Right:  right,
@@ -143,7 +136,7 @@ func isSameSentence(prev, cur pdf.Text) bool {
 	return styleCheck && heightCheck
 }
 
-func addString(cur pdf.Text, sections []section, rect rect) []section {
+func addString(cur pdf.Text, sections []section, rect Rect) []section {
 	cur.S = cleanString(cur.S)
 	if cur.S == "" {
 		return sections
