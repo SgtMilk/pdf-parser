@@ -8,17 +8,10 @@ import (
 	"strings"
 )
 
-type textNode struct {
-	Value    string
-	Font     string
-	Children []textNode
-	Position rect
-}
-
-func hierarchizeText(texts []section, titleFonts []font) textNode {
+func hierarchizeText(texts []section, titleFonts []font) *TextNode {
 	titleFonts = sortFonts(titleFonts)
 
-	topNode := textNode{
+	topNode := &TextNode{
 		Children: recursiveClassify(texts, titleFonts),
 	}
 
@@ -126,12 +119,12 @@ func findIndex(titlefonts []font, k string) int {
 	return len(titlefonts)
 }
 
-func recursiveClassify(texts []section, titleFonts []font) []textNode {
+func recursiveClassify(texts []section, titleFonts []font) []TextNode {
 	if titleFonts == nil {
 		return transformToNodes(texts)
 	}
 
-	var nodes []textNode
+	var nodes []TextNode
 
 	for iTitle, vTitle := range titleFonts {
 		var tempTitleFonts []font
@@ -148,11 +141,11 @@ func recursiveClassify(texts []section, titleFonts []font) []textNode {
 			if vTitle.name == v.text.Font && vTitle.size == v.text.FontSize {
 				if i != 0 {
 					if nodes == nil && !(vTitle.name == texts[lastTitle].text.Font && vTitle.size == texts[lastTitle].text.FontSize) {
-						nodes = append(nodes, textNode{
+						nodes = append(nodes, TextNode{
 							Children: recursiveClassify(texts[lastTitle:i], tempTitleFonts),
 						})
 					} else {
-						nodes = append(nodes, textNode{
+						nodes = append(nodes, TextNode{
 							Value:    texts[lastTitle].text.S,
 							Font:     vTitle.name + "-" + strconv.Itoa(int(vTitle.size)),
 							Position: v.position,
@@ -167,7 +160,7 @@ func recursiveClassify(texts []section, titleFonts []font) []textNode {
 		}
 
 		if cond {
-			nodes = append(nodes, textNode{
+			nodes = append(nodes, TextNode{
 				Value:    texts[lastTitle].text.S,
 				Font:     vTitle.name + "-" + strconv.Itoa(int(vTitle.size)),
 				Position: texts[lastTitle].position,
@@ -181,11 +174,11 @@ func recursiveClassify(texts []section, titleFonts []font) []textNode {
 	return transformToNodes(texts)
 }
 
-func transformToNodes(texts []section) []textNode {
-	var nodes = make([]textNode, len(texts))
+func transformToNodes(texts []section) []TextNode {
+	var nodes = make([]TextNode, len(texts))
 
 	for i, v := range texts {
-		nodes[i] = textNode{
+		nodes[i] = TextNode{
 			Value:    v.text.S,
 			Font:     v.text.Font + "-" + strconv.Itoa(int(v.text.FontSize)),
 			Position: v.position,
