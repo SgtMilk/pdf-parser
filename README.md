@@ -62,6 +62,8 @@ If you would like to test the server, there are two routes:
 
 # Annex
 
+<img src="assets/This_is_a_document.png"/>
+
 ```json
 [
     {
