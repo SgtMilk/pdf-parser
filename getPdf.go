@@ -95,7 +95,7 @@ func getPDF(r *pdf.Reader) []section {
 			} else {
 				lastTextStyle.W = sum / length
 
-				sections = addString(lastTextStyle, sections, Rect{
+				addString(lastTextStyle, &sections, Rect{
 					Top:    calculateY(top, page, pageHeights),
 					Bottom: calculateY(bottom, page, pageHeights),
 					Right:  right,
@@ -111,7 +111,7 @@ func getPDF(r *pdf.Reader) []section {
 			}
 		}
 
-		sections = addString(lastTextStyle, sections, Rect{
+		addString(lastTextStyle, &sections, Rect{
 			Top:    calculateY(top, page, pageHeights),
 			Bottom: calculateY(bottom, page, pageHeights),
 			Right:  right,
@@ -136,40 +136,32 @@ func isSameSentence(prev, cur pdf.Text) bool {
 	return styleCheck && heightCheck
 }
 
-func addString(cur pdf.Text, sections []section, rect Rect) []section {
-	cur.S = cleanString(cur.S)
+func addString(cur pdf.Text, sections *[]section, rect Rect) {
+	cleanString(&cur.S)
+	
 	if cur.S == "" {
-		return sections
+		return
 	}
 
 	if isUpper(cur.S) {
 		cur.Font += "-CAPS"
 	}
 
-	sections = append(sections, section{
+	*sections = append(*sections, section{
 		text:     cur,
 		position: rect,
 	})
-
-	return sections
 }
 
-func cleanString(s string) string {
+func cleanString(s *string) {
+	value := *s
 	re := regexp.MustCompile(`[^[:print:]À-ÿ]`)
-	s = re.ReplaceAllLiteralString(s, "")
+	value = re.ReplaceAllLiteralString(value, "")
 	re = regexp.MustCompile(`/s+`)
-	s = re.ReplaceAllLiteralString(s, " ")
-	s = strings.ReplaceAll(s, "\n", "")
-
-	if strings.TrimSpace(s) == "" {
-		return ""
-	}
-
-	if s != "" && s[0] == ' ' {
-		return s[1:]
-	}
-
-	return s
+	value = re.ReplaceAllLiteralString(value, " ")
+	value = strings.ReplaceAll(value, "\n", "")
+	value = strings.TrimSpace(value)
+	*s = value
 }
 
 func isUpper(s string) bool {
